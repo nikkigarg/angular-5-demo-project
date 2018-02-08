@@ -1,0 +1,27 @@
+<label>Server Name</label>
+<div>
+    <input
+    type="text"
+    class="form-control" [ngClass]="color"
+    [(ngModel)]="serverName" [ngClass]="color"> <!-- [ngStyle]="{backgroundColor: color}" -->
+ </div>
+ <select style="width:200px" [(ngModel)]="color">
+    <option value="''">Select</option>
+    <option value="green">Green</option>
+    <option value="red">Red</option>
+    <option value="blue">Blue</option>
+    <!-- <option *ngFor="let option of options" value="option">{{option}}</option> -->
+  </select>
+ 
+<button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()" style="margin:5px">Add Server</button>
+
+<p *ngIf="serverCreated">Server was created, server name is {{ serverName }}</p>
+<div *ngFor="let server of servers">
+  <p [ngStyle]="{backgroundColor: getColor()}" [ngClass]="{online: serverStatus === 'online'}" >
+        {{ server }} is created and status is {{ getServerStatus() }}
+  </p>
+</div>
+
